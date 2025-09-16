@@ -1,3 +1,3 @@
 # DailyStudyNodes
-日常学习笔记记录
+学习笔记记录
 
