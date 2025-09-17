@@ -8,7 +8,7 @@
 sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
-![1753856090794](技术学习笔记/Docker/image/Docker/1753856090794.png)
+![Docker](image/Docker/1753856090794.png)
 
 ### 2. 安装必要支持
 
