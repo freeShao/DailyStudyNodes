@@ -8,7 +8,7 @@
 sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
-![卸载Docker相关组件](image/Docker/1753856090794.png)
+![Docker](image/Docker/1753856090794.png)
 
 ### 2. 安装必要支持
 
@@ -16,7 +16,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
 ```
 
-![安装必要支持工具](image/Docker/1753857176509.png)
+![1753857176509](image/Docker/1753857176509.png)
 
 ### 3. 添加 Docker GPG key
 
@@ -61,7 +61,7 @@ sudo apt-get update
 sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 
-![添加Docker GPG key](image/Docker/1753857426808.png)
+![1753857426808](image/Docker/1753857426808.png)
 
 ### 2. 查看 Docker 版本
 
@@ -69,7 +69,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io
 sudo docker version
 ```
 
-![查看Docker版本](image/Docker/1753857520641.png)
+![1753857520641](image/Docker/1753857520641.png)
 
 ### 3. 安装 Docker 命令补全工具
 
@@ -81,8 +81,8 @@ sudo curl -L https://raw.githubusercontent.com/docker/docker-ce/master/component
 source /etc/bash_completion.d/docker.sh
 ```
 
-![安装Docker命令补全工具](image/Docker/1753859918928.png)
-![重启Docker服务](image/Docker/1753859903717.png)
+![1753859918928](image/Docker/1753859918928.png)
+![1753859903717](image/Docker/1753859903717.png)
 
 ### 4. 允许非 root 用户执行 docker 命令
 

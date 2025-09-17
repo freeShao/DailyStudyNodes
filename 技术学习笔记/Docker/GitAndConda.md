@@ -62,7 +62,7 @@ ssh-keygen -t rsa -C "your.email@example.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
-![1753759241065](image/GitAndConda/1753759241065.png)
+![查看公钥](image/GitAndConda/1753759241065.png)
 
 以下为 Github 配置 SSH 密钥的过程：
 
