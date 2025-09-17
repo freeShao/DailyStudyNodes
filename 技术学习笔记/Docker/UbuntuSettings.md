@@ -5,7 +5,7 @@
 ### 1. 下载 WSL 并开启虚拟化
 
 - 打开**控制面板**，选择 **程序** > **启用或关闭 Windows 功能**，勾选以下两项：
-  ![1753702659009](image/UbuntuSettings/1753702659009.png)
+  ![启用Windows功能](image/UbuntuSettings/1753702659009.png)
 
 ### 2. 将 WSL 默认版本设置为 WSL2
 
@@ -15,14 +15,14 @@
   wsl --set-default-version 2
   ```
 
-  ![1753704195404](image/UbuntuSettings/1753704195404.png)
+  ![设置WSL默认版本](image/UbuntuSettings/1753704195404.png)
 
 ## 二、WSL2 安装 Ubuntu-22.04 至 D 盘（方法一 | 推荐）
 
 ### 1. 创建文件夹
 
 - 在 `D` 盘（最好非 `C` 盘）创建 **WSL** 文件夹，并在该文件夹下创建 **Ubuntu-22.04** 文件夹。
-  ![1753699841657](image/UbuntuSettings/1753699841657.png)
+  ![创建WSL文件夹](image/UbuntuSettings/1753699841657.png)
 
 ### 2. 下载并导出 Ubuntu-22.04
 
@@ -34,7 +34,7 @@
   wsl --list --online
   ```
 
-  ![1753699421051](image/UbuntuSettings/1753699421051.png)
+  ![查看可用WSL发行版](image/UbuntuSettings/1753699421051.png)
 
 #### （2）安装 Ubuntu-22.04
 
@@ -51,7 +51,7 @@
     ```
 
   - 安装完毕后会要求创建一个新用户，按照提示输入用户名和密码，然后按 `Ctrl + D` 退出。
-    ![1753704723261](image/UbuntuSettings/1753704723261.png)
+    ![安装Ubuntu-22.04](image/UbuntuSettings/1753704723261.png)
 
 #### （3）导出 Ubuntu-22.04 为 `.tar` 文件
 
@@ -61,7 +61,7 @@
    wsl --export Ubuntu-22.04 D:\ProgramEnvs\WSL\Ubuntu-22.04\Ubuntu-22.04.tar
    ```
 
-   ![1753709904383](image/UbuntuSettings/1753709904383.png)
+   ![导出Ubuntu为tar文件](image/UbuntuSettings/1753709904383.png)
 
   - 可以执行以下命令查看 `Ubuntu-22.04.tar` 是否成功导出：
 
@@ -75,7 +75,7 @@
     ls D:\ProgramEnvs\WSL\Ubuntu-22.04
     ```
 
-      ![1753709704395](image/UbuntuSettings/1753709704395.png)
+      ![查看导出的tar文件](image/UbuntuSettings/1753709704395.png)
 
 #### （4）取消注册原有的 Ubuntu-22.04
 
@@ -85,7 +85,7 @@
    wsl --unregister Ubuntu-22.04
    ```
 
-   ![1753709825307](image/UbuntuSettings/1753709825307.png)
+   ![取消注册原有Ubuntu](image/UbuntuSettings/1753709825307.png)
 
 ### 3. 导入 Ubuntu-22.04 到 D 盘
 
@@ -121,7 +121,7 @@
   adduser yourusername
   ```
 
-   ![1753708854423](image/UbuntuSettings/1753708854423.png)
+   ![创建新用户](image/UbuntuSettings/1753708854423.png)
 
   - 系统会要求你输入（如果是之前填写过的，那么可以跳过）：
     - 新密码
@@ -135,7 +135,7 @@
   usermod -aG sudo yourusername
   ```
 
-  ![1753708783582](image/UbuntuSettings/1753708783582.png)
+  ![赋予新用户sudo权限](image/UbuntuSettings/1753708783582.png)
   - 这样，新用户就可以使用 `sudo` 进行管理员操作。
 
 ### 5. 修改默认登录用户为普通用户（可选）
@@ -159,6 +159,6 @@
   ```
 
   - 此时，你会发现默认以普通用户登录。
-    ![1753708718500](image/UbuntuSettings/1753708718500.png)
+    ![默认以普通用户登录](image/UbuntuSettings/1753708718500.png)
 
 ---
