@@ -14,15 +14,15 @@
 #### **项目内容**
 
 1. **数据收集与预处理**：
-   - 使用Kaggle上的Chest X-ray Pneumonia数据集，该数据集的胸部 X 线图像选自广州市妇女儿童医学中心 1 至 5 岁儿科患者的回顾性队列。
+   - 使用Kaggle上的 [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia/data) 数据集，该数据集的胸部 X 线图像选自广州市妇女儿童医学中心 1 至 5 岁儿科患者的回顾性队列。
    - 使用OpenCV和Matplotlib等库对图像进行裁剪、缩放、归一化等处理。
-   - 进行数据增强，如旋转、翻转、裁剪等，以增加训练数据的多样性。
+   - 进行数据增强，以增加训练数据的多样性。
    - 将图像数据分为训练集、验证集和测试集。
 
 2. **模型选择与构建**：
    - 选择预训练的深度学习模型`Xception`，该模型在图像分类任务中表现出色。
    - 使用`TensorFlow`和`Keras`框架构建和训练模型。
-   - 加载预训练的`Xception`模型，并根据需要进行微调。
+   - 加载预训练的`Xception`模型，并根据进行一定微调。
    - 使用`BinaryCrossentropy`作为损失函数，适用于二分类问题。
    - 使用`Adam`或`Adamax`优化器来优化模型参数。
    - 使用`EarlyStopping`回调函数来提前终止训练，防止过拟合。
