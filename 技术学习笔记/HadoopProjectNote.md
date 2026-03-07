@@ -32,12 +32,25 @@
 ![部分数据展示](./image/HadoopProjectNote/部分数据展示.png)
 > 第一行表示每列数据的标签，后续行表示某省市在某年的常住人口数量（万人）
 
-
 ## 二、实验流程
 
 ### 1. 数据导入
 
-#### (1) 创建数据目录
+#### (1) 上传数据
+
+上传数据到虚拟环境中，本实验将数据通过 `Git` 的方式克隆到虚拟环境
+![上传数据](./image/HadoopProjectNote/上传数据.png)
+> 关于配置 `git` 以及 `SSH`，本实验不过多赘述。
+
+将数据复制到项目文件夹中进行后续操作:
+
+```cmd
+cp populations.txt ~/hadoop-project/
+```
+
+![转移操作](image/HadoopProjectNote/转移操作.png)
+
+#### (2) 创建数据目录
 
 启动 `Hadoop` 集群，并在 `Hadoop` 环境中创建数据目录，并上传数据文件。
 
@@ -46,6 +59,21 @@ start-all.sh
 jps
 ```
 
+![启动hadoop集群](image/HadoopProjectNote/启动hadoop集群.png)
+> 两个必要的链接[http://26.214.130.121:8088] [http://26.214.130.121:9870]
 
+#### (3) 导入数据
+
+```cmd
+hdfs dfs -mkdir /population
+hdfs dfs -put populations.txt /population/
+```
+
+> 当前文件：`hdfs dfs -ls /`
+> 删除指令：`hdfs dfs -rm -r /xxxxxxxxx`
+
+在 `NameNode` 中查看上传的文件。
+![查看上传的文件](image/HadoopProjectNote/查看上传的文件.png)
 
 ### 2. 
+

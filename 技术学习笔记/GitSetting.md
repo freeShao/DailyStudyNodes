@@ -4,15 +4,15 @@
 
 ### 1. 更换镜像源
 
-```bash
+```cmd
 sudo vim /etc/apt/sources.list
 ```
 
-![更换镜像源](./image/GitSetting/1753757446155.png)
+![更换镜像源](./image/GitSetting/更换镜像源1.png)
 
 更换为清华大学的镜像源，按 `i` 切换到 `INSERT` 模式，将前面的内容注释掉后粘贴下述内容：
 
-```bash
+```cmd
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
@@ -25,7 +25,7 @@ deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe m
 
 ### 2. 更新软件包
 
-```bash
+```cmd
 sudo apt update
 ```
 
@@ -34,7 +34,7 @@ sudo apt update
 
 ### 3. 安装 Git
 
-```bash
+```cmd
 sudo apt install git -y
 ```
 
@@ -42,7 +42,7 @@ sudo apt install git -y
 
 ### 4. 配置 Git 用户名和邮箱
 
-```bash
+```cmd
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
@@ -51,7 +51,7 @@ git config --global user.email "your.email@example.com"
 
 ### 5. 配置 SSH 密钥
 
-```bash
+```cmd
 ssh-keygen -t rsa -C "your.email@example.com"
 ```
 
@@ -61,7 +61,7 @@ ssh-keygen -t rsa -C "your.email@example.com"
 
 查看生成的 SSH 公共密钥并复制：
 
-```bash
+```cmd
 cat ~/.ssh/id_rsa.pub
 ```
 
