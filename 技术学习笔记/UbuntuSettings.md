@@ -162,3 +162,44 @@
     ![默认以普通用户登录](./image/UbuntuSettings/默认普通用户登陆.png)
 
 ---
+
+## 三、WSL2 安装 Systemd 守护进程（可选）
+
+systemd 是 Linux 系统的基本构建基块套件。它提供一个系统和服务管理器，该管理器作为 PID 1 运行并启动系统的其余部分。
+
+wsl systemd 在运行 docker、nginx、mysql 后台服务时会很方便。
+
+### 1. 编辑配置文件
+
+```bash
+sudo vim /etc/wsl.conf
+```
+
+输入以下内容，用于更改 systemd 的初始值。
+
+```txt
+[boot]
+systemd=true
+```
+
+### 2. Ubuntu 版本安装systemd-sysv
+
+```bash
+sudo apt-get update -y && sudo apt-get install systemd systemd-sysv -y
+```
+
+![systemd-sysv安装](./image/UbuntuSettings/systemd-sysv安装.png)
+
+### 3. 重启 WSL2 进程
+
+```bash
+wsl --shutdown
+```
+
+查看 systemd 状态。
+
+```bash
+systemctl status
+```
+
+![systemd状态](./image/UbuntuSettings/systemd状态.png)
