@@ -144,7 +144,7 @@ sudo systemctl status docker
 sudo docker pull nginx
 ```
 
-![拉取镜像测试](image/Docker/拉取镜像测试.png)
+![拉取镜像测试](./image/Docker/拉取镜像测试.png)
 
 ## 三、Docker 常用命令速查表
 

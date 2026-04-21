@@ -1,5 +1,7 @@
 # 基于 Hadoop 集群的人口普查数据分析与可视化
 
+[TOC]
+
 ## 一、前期准备
 
 ### 1. 环境准备
@@ -76,7 +78,3 @@ hdfs dfs -put populations.txt /cnpopulation/
 ![查看上传的文件](./image/HadoopProjectNote/查看上传的文件.png)
 ![查看上传的文件2](./image/HadoopProjectNote/查看上传的文件2.png)
 > 注意：此处链接需要是localhost而不是虚拟机的IP地址。
-
-
-### 2. 
-

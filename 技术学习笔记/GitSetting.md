@@ -57,7 +57,7 @@ ssh-keygen -t rsa -C "your.email@example.com"
 
 一路回车默认即可
 
-![查看生成的SSH密钥](image/GitSetting/查看生成的SSH密钥.png)
+![查看生成的SSH密钥](./image/GitSetting/查看生成的SSH密钥.png)
 
 查看生成的 SSH 公共密钥并复制：
 
@@ -65,14 +65,14 @@ ssh-keygen -t rsa -C "your.email@example.com"
 cat ~/.ssh/id_rsa.pub
 ```
 
-![查看公钥](image/GitSetting/查看公钥.png)
+![查看公钥](./image/GitSetting/查看公钥.png)
 
 ### 6. Github 配置 SSH 密钥
 
 依次进入：个人主页 → Settings → SSH and GPG keys → New SSH key
 
-![Github配置SSH密钥](image/GitSettingGithub配置SSH密钥1.png)
+![Github配置SSH密钥](./image/GitSettingGithub配置SSH密钥1.png)
 
-![完成添加SSH密钥](image/GitSetting/Github配置SSH密钥2.png)
+![完成添加SSH密钥](./image/GitSetting/Github配置SSH密钥2.png)
 
-![测试SSH连接](image/GitSetting/Github配置SSH密钥3.png)
+![测试SSH连接](./image/GitSetting/Github配置SSH密钥3.png)
