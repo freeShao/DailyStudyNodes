@@ -210,7 +210,7 @@ mkdir -p ~/hadoopdata/hdfs/{namenode,datanode}
 vim $HADOOP_HOME/etc/hadoop/core-site.xml
 ```
 
-将下述中的 `losthost` 更改为 `hostname` 的内容。
+**将下述中的 `losthost` 更改为 `hostname` 的内容。**
 
 ```cmd
 <configuration>
@@ -239,6 +239,22 @@ vim $HADOOP_HOME/etc/hadoop/hdfs-site.xml
         <name>dfs.replication</name>
         <value>1</value>
     </property>
+
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.hostname</name>
+        <value>localhost</value>
+    </property>
+
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+
     <property>
         <name>dfs.namenode.name.dir</name>
         <value>file:///home/hadoop/hadoopdata/hdfs/namenode</value>
@@ -251,6 +267,7 @@ vim $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 ```
 
 ![1772780949060](./image/HadoopSetting/1772780949060.png)
+> 本实验对输入部分进行了一定改动，用于修复数据无法在UI界面显示的问题。
 
 #### (4) mapred-site.xml
 
@@ -419,11 +436,9 @@ sudo systemctl enable ssh
 
 ```cmd
 wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
-
-tar -xvzf spark-3.3.4-bin-hadoop3.tgz
 ```
 
-![1772804611090](image/HadoopSetting/1772804611090.png)
+![pyspark版本](./image/HadoopSetting/pyspark版本.png)
 > 等待下载安装包。
 
 ### 2. 解压 spark 安装包
@@ -438,7 +453,7 @@ tar -xvzf spark-3.3.4-bin-hadoop3.tgz
     ls
     ```
 
-    ![1772804854689](image/HadoopSetting/1772804854689.png)
+    ![1772804854689](./image/HadoopSetting/1772804854689.png)
 
 - 解压缩到当前文件夹
 
@@ -446,7 +461,7 @@ tar -xvzf spark-3.3.4-bin-hadoop3.tgz
     tar -xvzf spark-3.5.8-bin-hadoop3.tgz
     ```
 
-    ![1772805146661](image/HadoopSetting/1772805146661.png)
+    ![1772805146661](./image/HadoopSetting/1772805146661.png)
 
 - 重命名解压后文件（可选）
 
@@ -461,12 +476,29 @@ vim ~/.bashrc
 ```
 
 ```cmd
-export SPARK_HOME=/home/hadoop/spark-3.5.8
-export PATH=$SPARK_HOME/bin:$PATH
+# spark
+export SPARK_HOME=/home/shao/spark-3.5.8
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 # 使用类路径
 export SPARK_DIST_CLASSPATH=$(hadoop classpath)
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PYSPARK_PYTHON=python
 ```
+
+![Spark环境变量](./image/HadoopSetting/Spark环境变量.png)
 
 ```cmd
 source ~/.bashrc
 ```
+
+### 3. 测试Spark版本
+
+```cmd
+spark-shell --version
+
+或
+
+pyspark --version
+```
+
+![1772891481752](./image/HadoopSetting/1772891481752.png)

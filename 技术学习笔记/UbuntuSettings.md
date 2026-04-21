@@ -159,6 +159,6 @@
   ```
 
   - 此时，你会发现默认以普通用户登录。
-    ![默认以普通用户登录](./image/UbuntuSettings/1753708718500.png)
+    ![默认以普通用户登录](./image/UbuntuSettings/默认普通用户登陆.png)
 
 ---

@@ -48,7 +48,7 @@
 cp populations.txt ~/hadoop-project/
 ```
 
-![转移操作](image/HadoopProjectNote/转移操作.png)
+![转移操作](./image/HadoopProjectNote/转移操作.png)
 
 #### (2) 创建数据目录
 
@@ -59,21 +59,24 @@ start-all.sh
 jps
 ```
 
-![启动hadoop集群](image/HadoopProjectNote/启动hadoop集群.png)
-> 两个必要的链接[http://26.214.130.121:8088] [http://26.214.130.121:9870]
+![启动hadoop集群](./image/HadoopProjectNote/启动hadoop集群.png)
+> 两个必要的链接[http://localhost:8088] [http://localhost:9870]
 
 #### (3) 导入数据
 
 ```cmd
-hdfs dfs -mkdir /population
-hdfs dfs -put populations.txt /population/
+hdfs dfs -mkdir /cnpopulation
+hdfs dfs -put populations.txt /cnpopulation/
 ```
 
 > 当前文件：`hdfs dfs -ls /`
 > 删除指令：`hdfs dfs -rm -r /xxxxxxxxx`
 
 在 `NameNode` 中查看上传的文件。
-![查看上传的文件](image/HadoopProjectNote/查看上传的文件.png)
+![查看上传的文件](./image/HadoopProjectNote/查看上传的文件.png)
+![查看上传的文件2](./image/HadoopProjectNote/查看上传的文件2.png)
+> 注意：此处链接需要是localhost而不是虚拟机的IP地址。
+
 
 ### 2. 
 
