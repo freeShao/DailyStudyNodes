@@ -15,7 +15,17 @@
               "state": {
                 "file": "技术学习笔记/UbuntuSettings.md",
                 "mode": "source",
-                "source": false
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
               },
               "icon": "lucide-file",
               "title": "UbuntuSettings"
@@ -165,9 +175,15 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:新建数据库": false
+      "bases:新建数据库": false,
+      "omnisearch:Omnisearch": false
     }
   },
   "active": "eb14bab9d9f01689",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "技术学习笔记/image/Conda/执行安装conda2.png",
+    "技术学习笔记/UbuntuSettings.md",
+    "技术学习笔记/image/Conda/更新环境变量.png",
+    "技术学习笔记/image/Conda/获取conda安装包.png"
+  ]
 }
