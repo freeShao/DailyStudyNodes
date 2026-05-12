@@ -1,5 +1,6 @@
 .idea
 .vscode
+.obsidian
 
 # 忽略 PDF 格式文档
 *.pdf
