@@ -1,8 +1,8 @@
 # 基于 Ubuntu22.04 配置 MiniConda
 
-## 一、安装 MiniConda
+## 1. 安装 MiniConda
 
-### 1. 下载 MiniConda 安装脚本
+### 1.1. 下载 MiniConda 安装脚本
 
 - 切换文件路径到 `tmp` 文件夹下
 
@@ -19,7 +19,7 @@
 
     ![获取conda安装包](./image/Conda/获取conda安装包.png)
 
-### 2. 执行安装脚本
+### 1.2. 执行安装脚本
 
 - 给安装包添加执行权限
 
@@ -39,7 +39,7 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 
 ![执行安装conda2](./image/Conda/执行安装conda2.png)
 
-### 3. 激活环境
+### 1.3. 激活环境
 
 - 添加完环境变量后需要对环境进行更新，使其生效
 
@@ -53,7 +53,7 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 
 ___
 
-## 二、添加Conda镜像源（可选）
+## 2. 添加Conda镜像源（可选）
 
 > 注意：镜像源不能完全保证所有的库都有，因此官方源相对是最全面的。如果碰到某些库无法安装，请尝试使用默认源进行安装。
 
@@ -61,7 +61,7 @@ ___
 
 **显示库安装自什么源：** `conda config --set show_channel_urls yes`
 
-### 1. 清华源
+### 2.1. 清华源
 
 ```cmd
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
@@ -70,7 +70,7 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/f
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 ```
 
-### 2. 中科大源
+### 2.2. 中科大源
 
 ```cmd
 conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
@@ -82,7 +82,7 @@ conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
 ![添加镜像源](./image/Conda/添加镜像源.png)
 ___
 
-## 三、Conda 常用命令速查表
+## 3. Conda 常用命令速查表
 
 | 命令                                | 作用               | 示例                            |
 | ----------------------------------- | ------------------ | ------------------------------- |

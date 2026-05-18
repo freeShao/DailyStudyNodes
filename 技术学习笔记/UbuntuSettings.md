@@ -1,13 +1,13 @@
 # 基于 WSL2 的 Ubuntu 22.04 配置
 
-## 一、安装 WSL2
+## 1. 安装 WSL2
 
-### 1. 下载 WSL 并开启虚拟化
+### 1.1. 下载 WSL 并开启虚拟化
 
 - 打开**控制面板**，选择 **程序** > **启用或关闭 Windows 功能**，勾选以下两项：
   ![启用Windows功能](./image/UbuntuSettings/启用Windows功能.png)
 
-### 2. 将 WSL 默认版本设置为 WSL2
+### 1.2. 将 WSL 默认版本设置为 WSL2
 
 - 打开命令提示符，输入以下命令：
 
@@ -17,16 +17,16 @@
 
   ![设置WSL默认版本](./image/UbuntuSettings/设置WSL默认版本.png)
 
-## 二、WSL2 安装 Ubuntu-22.04 至 D 盘（方法一 | 推荐）
+## 2. WSL2 安装 Ubuntu-22.04 至 D 盘（方法一 | 推荐）
 
-### 1. 创建文件夹
+### 2.1. 创建文件夹
 
 - 在 `D` 盘（最好非 `C` 盘）创建 **WSL** 文件夹，并在该文件夹下创建 **Ubuntu-22.04** 文件夹。
   ![创建WSL文件夹](./image/UbuntuSettings/创建WSL文件夹.png)
 
-### 2. 下载并导出 Ubuntu-22.04
+### 2.2. 下载并导出 Ubuntu-22.04
 
-#### （1）查看可用的 WSL 发行版
+#### （一） 查看可用的 WSL 发行版
 
 - 打开命令提示符，输入以下命令：
 
@@ -36,7 +36,7 @@
 
   ![查看可用WSL发行版](./image/UbuntuSettings/查看可用WSL发行版.png)
 
-#### （2）安装 Ubuntu-22.04
+#### （二） 安装 Ubuntu-22.04
 
 - 输入以下命令进行安装：
 
@@ -53,7 +53,7 @@
   - 安装完毕后会要求创建一个新用户，按照提示输入用户名和密码，然后按 `Ctrl + D` 退出。
     ![安装Ubuntu-22.04](./image/UbuntuSettings/安装Ubuntu-22.04.png)
 
-#### （3）导出 Ubuntu-22.04 为 `.tar` 文件
+#### （三） 导出 Ubuntu-22.04 为 `.tar` 文件
 
 - 输入以下命令：
 
@@ -77,7 +77,7 @@
 
       ![查看导出的tar文件](./image/UbuntuSettings/查看导出的tar文件.png)
 
-#### （4）取消注册原有的 Ubuntu-22.04
+#### （四） 取消注册原有的 Ubuntu-22.04
 
 - 如果你已经安装了 Ubuntu-22.04（默认在 `C` 盘），可以将其从 WSL 注销：
 
@@ -87,7 +87,7 @@
 
    ![取消注册原有Ubuntu](./image/UbuntuSettings/取消注册原有Ubuntu.png)
 
-### 3. 导入 Ubuntu-22.04 到 D 盘
+### 2.3. 导入 Ubuntu-22.04 到 D 盘
 
 - 运行以下命令，将 Ubuntu-22.04 重新导入到 `D:\ProgramEnvs\WSL\Ubuntu-22.04`：
 
@@ -97,7 +97,7 @@
 
   - 这将会把 Ubuntu-22.04 安装到 `D` 盘，而不是默认的 `C` 盘。
 
-### 4. 启动 Ubuntu-22.04
+### 2.4. 启动 Ubuntu-22.04
 
 - 导入完成后，可以启动 WSL：
 
@@ -113,7 +113,7 @@
 
   - 此时，你会发现默认以 `root` 用户登录，因为 WSL 手动导入的 Ubuntu 不会自动创建普通用户，需要我们手动创建（如果之前创建过了可以检查一下再跳过）。
 
-#### （1）创建新用户
+#### （一） 创建新用户
 
 - 在 WSL 终端（默认 `root`）下运行：
 
@@ -127,7 +127,7 @@
     - 新密码
     - 用户信息（全部可以直接回车跳过）
 
-#### （2）赋予新用户 `sudo` 权限
+#### （二） 赋予新用户 `sudo` 权限
 
 - 输入以下命令：
 
@@ -138,7 +138,7 @@
   ![赋予新用户sudo权限](./image/UbuntuSettings/赋予新用户sudo权限.png)
   - 这样，新用户就可以使用 `sudo` 进行管理员操作。
 
-### 5. 修改默认登录用户为普通用户（可选）
+### 2.5. 修改默认登录用户为普通用户（可选）
 
 - 以管理员身份运行 cmd，执行命令：
 
@@ -163,13 +163,13 @@
 
 ---
 
-## 三、WSL2 安装 Systemd 守护进程（可选）
+## 3. WSL2 安装 Systemd 守护进程（可选）
 
 systemd 是 Linux 系统的基本构建基块套件。它提供一个系统和服务管理器，该管理器作为 PID 1 运行并启动系统的其余部分。
 
 wsl systemd 在运行 docker、nginx、mysql 后台服务时会很方便。
 
-### 1. 编辑配置文件
+### 3.1. 编辑配置文件
 
 ```bash
 sudo vim /etc/wsl.conf
@@ -182,7 +182,7 @@ sudo vim /etc/wsl.conf
 systemd=true
 ```
 
-### 2. Ubuntu 版本安装systemd-sysv
+### 3.2. Ubuntu 版本安装systemd-sysv
 
 ```bash
 sudo apt-get update -y && sudo apt-get install systemd systemd-sysv -y
@@ -190,7 +190,7 @@ sudo apt-get update -y && sudo apt-get install systemd systemd-sysv -y
 
 ![systemd-sysv安装](./image/UbuntuSettings/systemd-sysv安装.png)
 
-### 3. 重启 WSL2 进程
+### 3.3. 重启 WSL2 进程
 
 ```bash
 wsl --shutdown

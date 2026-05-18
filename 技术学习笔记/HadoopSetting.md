@@ -1,8 +1,8 @@
 # 基于Ubuntu22.04安装Hadoop集群
 
-## 一、准备阶段
+## 1. 准备阶段
 
-### 1. 安装 Java 工具包
+### 1.1. 安装 Java 工具包
 
 Ubuntu默认软件仓库同时包含 `Java 8` 和 `Java 11`。由于 `Hive` 只能 `Java 8` 版本上运行，此处使用 `Java 8` 版本。
 执行下述指令：
@@ -16,7 +16,7 @@ sudo apt update && sudo apt install openjdk-8-jdk
 ![允许继续](./image/HadoopSetting/1772701552015.png)
 ![安装完成](./image/HadoopSetting/1772701637471.png)
 
-### 2. 验证安装
+### 1.2. 验证安装
 
 ```cmd
 java -version
@@ -24,7 +24,7 @@ java -version
 
 ![1772701704885](./image/HadoopSetting/1772701704885.png)
 
-### 3. 安装 SSH（如果已完成可以跳过）
+### 1.3. 安装 SSH（如果已完成可以跳过）
 
 安装 `SSH`（安全外壳协议）对 `Hadoop` 来说至关重要，它能够实现在 `Hadoop` 集群中节点之间的安全通信。确保数据的完整性和机密性，并支持在集群中高效地进行分布式数据处理。
 
@@ -32,7 +32,7 @@ java -version
 sudo apt install ssh
 ```
 
-### 4. 创建 Hadoop 用户
+### 1.4. 创建 Hadoop 用户
 
 本组件都将以创建的 `Hadoop` 用户身份运行，该用户将用于登录 `Hadoop` 的 Web 界面。
 运行下述命令创建用户并设置密码。
@@ -50,7 +50,7 @@ sudo userdel hadoop
 对于 `Full Name` 等部分，回车保持默认即可。
 ![1772776985345](./image/HadoopSetting/1772776985345.png)
 
-### 5. 切换用户
+### 1.5. 切换用户
 
 执行下述指令，输入之前设置的密码，切换到 `hadoop` 用户。
 
@@ -61,9 +61,9 @@ su - hadoop
 ![1772777201231](./image/HadoopSetting/1772777201231.png)
 > 登陆成功后的各项信息，此处不对该内容进行解释。
 
-### 6. 配置 SSH
+### 1.6. 配置 SSH
 
-#### (1) 生成 SSH 密钥
+#### （一） 生成 SSH 密钥
 
 为新用户 hadoop 配置免密码 SSH 访问，因此并没有输入输入密钥来保护文件和密码。
 执行下述代码生成 SSH 密钥。
@@ -74,7 +74,7 @@ ssh-keygen -t rsa
 
 ![1772783300787](./image/HadoopSetting/1772783300787.png)
 
-#### (2) 设置密钥权限
+#### （二） 设置密钥权限
 
 将生成的公钥复制到授权密钥文件中，并设置权限。
 
@@ -83,7 +83,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 640 ~/.ssh/authorized_keys
 ```
 
-#### (3) 通过 SSH 链接本地主机
+#### （三） 通过 SSH 链接本地主机
 
 ```cmd
 ssh localhost
@@ -92,9 +92,9 @@ ssh localhost
 ![1772783572689](./image/HadoopSetting/1772783572689.png)
 ___
 
-## 二、安装 Hadoop
+## 2. 安装 Hadoop
 
-### 1. 下载 hadoop 安装包
+### 2.1. 下载 hadoop 安装包
 
 下载 Hadoop 3.3.6 安装包。
 
@@ -105,7 +105,7 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 ![1772777362181](./image/HadoopSetting/1772777362181.png)
 > 等待下载安装包。
 
-### 2. 解压 hadoop 安装包
+### 2.2. 解压 hadoop 安装包
 
 - 查看当前安装包路径情况（可选）
 
@@ -133,9 +133,9 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
     mv hadoop-3.3.6 hadoop
     ```
 
-### 3. 配置环境变量
+### 2.3. 配置环境变量
 
-#### (1) 系统环境变量
+#### （一） 系统环境变量
 
 接下来，需要在系统上配置 Hadoop 和 Java 环境变量。可以使用熟悉的文本编辑器打开 ~/.bashrc 文件。
 本文使用 `vim` 编辑器。
@@ -147,9 +147,9 @@ vim ~/.bashrc
 添加下述内容到最后一行中。
 
 ```cmd
-# java
+# 一、 java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-# hadoop
+# 二、 hadoop
 export HADOOP_HOME=/home/hadoop/hadoop-3.3.6
 export HADOOP_INSTALL=$HADOOP_HOME
 export HADOOP_MAPRED_HOME=$HADOOP_HOME
@@ -169,7 +169,7 @@ export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
 source ~/.bashrc
 ```
 
-#### (2) hadoop 环境变量
+#### （一） hadoop 环境变量
 
 在 hadoop-env.sh 文件中配置 JAVA_HOME。
 
@@ -182,9 +182,9 @@ vim $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`。
 ![1772778840873](./image/HadoopSetting/1772778840873.png)
 
-### 4. 配置 Hadoop
+### 2..1. 配置 Hadoop
 
-#### (1) node
+#### （一） node
 
 首先，需要在 **Hadoop** 用户主目录下创建 `namenode` 和 `datanode` 目录。
 运行以下命令创建这两个目录。
@@ -202,7 +202,7 @@ mkdir -p ~/hadoopdata/hdfs/{namenode,datanode}
 创建后内容如下所示。
 ![1772780113593](./image/HadoopSetting/1772780113593.png)
 
-#### (2) core-site.xml
+#### （二） core-site.xml
 
 编辑 `core-site.xml` 文件，将其更新成系统的主机名（可输入指令 `hostname` 进行查看）。
 
@@ -223,7 +223,7 @@ vim $HADOOP_HOME/etc/hadoop/core-site.xml
 
 ![1772780684349](./image/HadoopSetting/1772780684349.png)
 
-#### (3) hdfs-site.xml
+#### （三） hdfs-site.xml
 
 编辑 `hdfs-site.xml` 文件。
 
@@ -269,7 +269,7 @@ vim $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 ![1772780949060](./image/HadoopSetting/1772780949060.png)
 > 本实验对输入部分进行了一定改动，用于修复数据无法在UI界面显示的问题。
 
-#### (4) mapred-site.xml
+#### （四） mapred-site.xml
 
 编辑 `mapred-site.xml` 文件。
 
@@ -298,7 +298,7 @@ vim $HADOOP_HOME/etc/hadoop/mapred-site.xml
 
 ![1772781233409](./image/HadoopSetting/1772781233409.png)
 
-#### (5) yarn-site
+#### （五） yarn-site
 
 编辑 `yarn-site.xml` 文件。
 
@@ -323,7 +323,7 @@ vim $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 ![1772781407321](./image/HadoopSetting/1772781407321.png)
 
-#### (6) 启动 Hadoop 集群
+#### （六） 启动 Hadoop 集群
 
 在启动 `Hadoop` 集群之前，需要将 `NameNode` 格式化为 `hadoop` 用户。
 
@@ -375,7 +375,7 @@ sudo systemctl enable ssh
 再次使用 `ssh localhost` 测试ssh链接情况。
 ![SSH链接](./image/HadoopSetting/1772782797131.png)
 
-#### (7) 访问 NameNode 和 Resource Manager
+#### （七） 访问 NameNode 和 Resource Manager
 
 首先需要查看本机的 `IP` 地址。在 Ubuntu 系统中，需要安装 `net-tools` 来运行 `ipconfig` 命令。
 
@@ -405,7 +405,7 @@ sudo systemctl enable ssh
   - 若无法访问，可尝试使用localhost进行替代，亦可通过下述方法解决。
   ![WSL网络配置](./image/HadoopSetting/1772799294602.png)
 
-### 5. 验证 Hadoop 集群
+### 2..2. 验证 Hadoop 集群
 
 在 `HDFS` 文件系统中创建一些目录来测试 `Hadoop`。
 
@@ -428,9 +428,9 @@ sudo systemctl enable ssh
     亦可在 `NameNode` 中查看：
     ![NameNode目录](./image/HadoopSetting/1772800927077.png)
 
-## 三、安装 Spark
+## 2.1. 安装 Spark
 
-### 1. 下载spark安装包
+### 2.1.1. 下载spark安装包
 
 下载 Spark 3.5.8 安装包。
 
@@ -441,7 +441,7 @@ wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
 ![pyspark版本](./image/HadoopSetting/pyspark版本.png)
 > 等待下载安装包。
 
-### 2. 解压 spark 安装包
+### 2.1.2. 解压 spark 安装包
 
 - 查看当前安装包路径情况（可选）
 
@@ -469,17 +469,17 @@ wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
     mv spark-3.5.8-bin-hadoop3 spark-3.5.8
     ```
 
-### 3. 配置spark环境变量
+### 2.1.3. 配置spark环境变量
 
 ```cmd
 vim ~/.bashrc
 ```
 
 ```cmd
-# spark
+# 三、 spark
 export SPARK_HOME=/home/shao/spark-3.5.8
 export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-# 使用类路径
+# 四、 使用类路径
 export SPARK_DIST_CLASSPATH=$(hadoop classpath)
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export PYSPARK_PYTHON=python
@@ -491,7 +491,7 @@ export PYSPARK_PYTHON=python
 source ~/.bashrc
 ```
 
-### 3. 测试Spark版本
+### 4..1. 测试Spark版本
 
 ```cmd
 spark-shell --version

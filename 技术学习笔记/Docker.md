@@ -1,8 +1,8 @@
 # 基于Ubuntu22.04安装Docker
 
-## 一、准备阶段
+## 1. 准备阶段
 
-### 1. 卸载Ubuntu可能自带的docker
+### 1.1. 卸载Ubuntu可能自带的docker
 
 ```bash
 sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -10,7 +10,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
 
 ![卸载Docker](./image/Docker/卸载Docker.png)
 
-### 2. 安装依赖
+### 1.2. 安装依赖
 
 ```bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
@@ -18,7 +18,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 
 ![安装依赖](./image/Docker/安装必要支持.png)
 
-### 3. 添加 Docker GPG 密钥
+### 1.3. 添加 Docker GPG 密钥
 
 1. **Docker 官方 key**
 
@@ -32,7 +32,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
     curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     ```
 
-### 4. 设置稳定版仓库
+### 1.4. 设置稳定版仓库
 
 1. **Docker 官方源**
 
@@ -46,9 +46,9 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     ```
 
-## 二、安装 Docker
+## 2. 安装 Docker
 
-### 1. 安装最新版本docker
+### 2.1. 安装最新版本docker
 
 ```bash
 sudo apt update
@@ -58,7 +58,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io
 
 ![安装docker](./image/Docker/安装docker.png)
 
-### 2. 查看 Docker 版本
+### 2.2. 查看 Docker 版本
 
 ```bash
 sudo docker version
@@ -66,7 +66,7 @@ sudo docker version
 
 ![查看docker版本](./image/Docker/查看docker版本.png)
 
-### 3. 安装 Docker 命令补全工具
+### 2.3. 安装 Docker 命令补全工具
 
 1. 更新 CA 证书（可选，若下方出现SSL证书认证问题，可加 `-k`）
 
@@ -90,12 +90,12 @@ sudo docker version
     ![安装命令补全工具](./image/Docker/安装命令补全工具.png)
     ![安装命令补全工具2](./image/Docker/1776769353879.png)
 
-### 4. 允许非 root 用户执行 docker 命令
+### 2.4. 允许非 root 用户执行 docker 命令
 
 - 在docker命令前加上sudo，比如：`sudo docker ps`
 - `sudo -i` 切换至 root 用户，再执行 docker 命令
 
-### 5. 添加 Docker 镜像站
+### 2.5. 添加 Docker 镜像站
 
 ```bash
 sudo vim /etc/docker/daemon.json
@@ -128,7 +128,7 @@ sudo systemctl restart docker
 
 ![配置镜像站](./image/Docker/配置镜像站.png)
 
-### 5. 启动并查看 Docker 运行状态
+### 2.6. 启动并查看 Docker 运行状态
 
 ```bash
 sudo systemctl start docker
@@ -138,7 +138,7 @@ sudo systemctl status docker
 
 ![查看Docker状态](./image/Docker/查看Docker状态.png)
 
-### 6. 测试拉取镜像
+### 2.7. 测试拉取镜像
 
 ```bash
 sudo docker pull nginx
@@ -146,7 +146,7 @@ sudo docker pull nginx
 
 ![拉取镜像测试](./image/Docker/拉取镜像测试.png)
 
-## 三、Docker 常用命令速查表
+## 3. Docker 常用命令速查表
 
 | 命令                            | 作用               | 示例                                            |
 | ------------------------------- | ------------------ | ----------------------------------------------- |

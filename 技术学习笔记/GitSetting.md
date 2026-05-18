@@ -1,8 +1,8 @@
 # 基于Ubuntu22.04安装Git
 
-## 安装 Git
+## 1. 安装 Git
 
-### 1. 更换镜像源
+### 1.1. 更换镜像源
 
 ```cmd
 sudo vim /etc/apt/sources.list
@@ -23,7 +23,7 @@ deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe m
 
 > 编辑完成后按 `esc` 退 `INSERT` 模式，输入 `:wq` 保存退出 `vim` 编辑器。
 
-### 2. 更新软件包
+### 1.2. 更新软件包
 
 ```cmd
 sudo apt update
@@ -32,7 +32,7 @@ sudo apt update
 ![更新软件包1](./image/GitSetting/更新软件包1.png)
 ![更新软件包2](./image/GitSetting/更新软件包2.png)
 
-### 3. 安装 Git
+### 1.3. 安装 Git
 
 ```cmd
 sudo apt install git -y
@@ -40,7 +40,7 @@ sudo apt install git -y
 
 ![安装Git](./image/GitSetting/安装Git.png)
 
-### 4. 配置 Git 用户名和邮箱
+### 1.4. 配置 Git 用户名和邮箱
 
 ```cmd
 git config --global user.name "Your Name"
@@ -49,7 +49,7 @@ git config --global user.email "your.email@example.com"
 
 ![配置用户名](./image/GitSetting/配置用户名.png)
 
-### 5. 配置 SSH 密钥
+### 1.5. 配置 SSH 密钥
 
 ```cmd
 ssh-keygen -t rsa -C "your.email@example.com"
@@ -67,7 +67,7 @@ cat ~/.ssh/id_rsa.pub
 
 ![查看公钥](./image/GitSetting/查看公钥.png)
 
-### 6. Github 配置 SSH 密钥
+### 1.6. Github 配置 SSH 密钥
 
 依次进入：个人主页 → Settings → SSH and GPG keys → New SSH key
 
