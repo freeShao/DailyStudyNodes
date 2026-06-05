@@ -491,7 +491,7 @@ export PYSPARK_PYTHON=python
 source ~/.bashrc
 ```
 
-### 4..1. 测试Spark版本
+#### （一） 测试Spark版本
 
 ```cmd
 spark-shell --version
@@ -500,5 +500,3 @@ spark-shell --version
 
 pyspark --version
 ```
-
-![1772891481752](./image/HadoopSetting/1772891481752.png)
