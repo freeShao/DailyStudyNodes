@@ -88,7 +88,6 @@ sudo docker version
     ```
 
     ![安装命令补全工具](./image/Docker/安装命令补全工具.png)
-    ![安装命令补全工具2](./image/Docker/1776769353879.png)
 
 ### 2.4. 允许非 root 用户执行 docker 命令
 
