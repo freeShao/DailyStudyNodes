@@ -13,8 +13,8 @@ sudo apt update && sudo apt install openjdk-8-jdk
 
 ![安装jdk8](./image/HadoopSetting/安装jdk8.png)
 继续输入`yes`，继续执行安装流程。
-![允许继续](./image/HadoopSetting/1772701552015.png)
-![安装完成](./image/HadoopSetting/1772701637471.png)
+![允许继续](./image/HadoopSetting/允许继续1.png)
+![安装完成](./image/HadoopSetting/允许继续2.png)
 
 ### 1.2. 验证安装
 
@@ -22,7 +22,7 @@ sudo apt update && sudo apt install openjdk-8-jdk
 java -version
 ```
 
-![1772701704885](./image/HadoopSetting/1772701704885.png)
+![查看Java版本](./image/HadoopSetting/查看Java版本.png)
 
 ### 1.3. 安装 SSH（如果已完成可以跳过）
 
@@ -48,7 +48,7 @@ sudo userdel hadoop
 ```
 
 对于 `Full Name` 等部分，回车保持默认即可。
-![1772776985345](./image/HadoopSetting/1772776985345.png)
+![添加用户|643](./image/HadoopSetting/添加用户.png)
 
 ### 1.5. 切换用户
 
@@ -58,7 +58,7 @@ sudo userdel hadoop
 su - hadoop
 ```
 
-![1772777201231](./image/HadoopSetting/1772777201231.png)
+![切换用户|648](./image/HadoopSetting/切换用户.png)
 > 登陆成功后的各项信息，此处不对该内容进行解释。
 
 ### 1.6. 配置 SSH
@@ -72,7 +72,7 @@ su - hadoop
 ssh-keygen -t rsa
 ```
 
-![1772783300787](./image/HadoopSetting/1772783300787.png)
+![添加SSH密钥|620](./image/HadoopSetting/添加SSH密钥.png)
 
 #### （二） 设置密钥权限
 
@@ -89,7 +89,7 @@ chmod 640 ~/.ssh/authorized_keys
 ssh localhost
 ```
 
-![1772783572689](./image/HadoopSetting/1772783572689.png)
+![SSH本地连接测试|653](./image/HadoopSetting/SSH本地连接测试.png)
 ___
 
 ## 2. 安装 Hadoop
@@ -102,7 +102,7 @@ ___
 wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 ```
 
-![1772777362181](./image/HadoopSetting/1772777362181.png)
+![下载Hadoop安装包|900](./image/HadoopSetting/下载Hadoop安装包.png)
 > 等待下载安装包。
 
 ### 2.2. 解压 hadoop 安装包
@@ -117,7 +117,7 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
     ls
     ```
 
-    ![1772777555555](./image/HadoopSetting/1772777555555.png)
+    ![解压hadoop安装包|732](./image/HadoopSetting/解压hadoop安装包.png)
 
 - 解压缩到当前文件夹
 
@@ -125,7 +125,7 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
     tar -xvzf hadoop-3.3.6.tar.gz
     ```
 
-    ![1772777913359](./image/HadoopSetting/1772777913359.png)
+    ![解压hadoop压缩包|648](./image/HadoopSetting/解压hadoop压缩包.png)
 
 - 重命名解压后文件（可选）
 
@@ -177,10 +177,10 @@ source ~/.bashrc
 vim $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 ```
 
-![1772778797969](./image/HadoopSetting/1772778797969.png)
+![修改Java环境变量1|839](./image/HadoopSetting/修改Java环境变量1.png)
 将该内容更改为：
 `JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`。
-![1772778840873](./image/HadoopSetting/1772778840873.png)
+![修改Java环境变量2|849](./image/HadoopSetting/修改Java环境变量2.png)
 
 ### 2..1. 配置 Hadoop
 
@@ -200,7 +200,7 @@ mkdir -p ~/hadoopdata/hdfs/{namenode,datanode}
 ```
 
 创建后内容如下所示。
-![1772780113593](./image/HadoopSetting/1772780113593.png)
+![根目录文件情况|776](./image/HadoopSetting/根目录文件情况.png)
 
 #### （二） core-site.xml
 
@@ -221,7 +221,7 @@ vim $HADOOP_HOME/etc/hadoop/core-site.xml
 </configuration>
 ```
 
-![1772780684349](./image/HadoopSetting/1772780684349.png)
+![core-site配置|636](./image/HadoopSetting/core-site配置.png)
 
 #### （三） hdfs-site.xml
 
@@ -266,7 +266,7 @@ vim $HADOOP_HOME/etc/hadoop/hdfs-site.xml
  </configuration>
 ```
 
-![1772780949060](./image/HadoopSetting/1772780949060.png)
+![hdfs-site配置|704](./image/HadoopSetting/hdfs-site配置.png)
 > 本实验对输入部分进行了一定改动，用于修复数据无法在UI界面显示的问题。
 
 #### （四） mapred-site.xml
@@ -296,7 +296,7 @@ vim $HADOOP_HOME/etc/hadoop/mapred-site.xml
 </configuration>
 ```
 
-![1772781233409](./image/HadoopSetting/1772781233409.png)
+![mapred-site配置|743](./image/HadoopSetting/mapred-site配置.png)
 
 #### （五） yarn-site
 
@@ -321,7 +321,7 @@ vim $HADOOP_HOME/etc/hadoop/yarn-site.xml
 </configuration>
 ```
 
-![1772781407321](./image/HadoopSetting/1772781407321.png)
+![yarn-site配置](./image/HadoopSetting/yarn-site配置.png)
 
 #### （六） 启动 Hadoop 集群
 
@@ -333,10 +333,10 @@ vim $HADOOP_HOME/etc/hadoop/yarn-site.xml
 hdfs namenode -format
 ```
 
-![1772781643526](./image/HadoopSetting/1772781643526.png)
+![格式化namenode1|834](./image/HadoopSetting/格式化namenode1.png)
 
 使用 `hdfs` 文件系统成功格式化 `namenode` 目录之后，可以看到提示信息：*"Storage directory /home/hadoop/hadoopdata/hdfs/namenode has been successfully formatted."*
-![1772781767995](./image/HadoopSetting/1772781767995.png)
+![格式化namenode2|835](./image/HadoopSetting/格式化namenode2.png)
 
 使用下述命令启动 `Hadoop` 集群。
 
@@ -344,7 +344,7 @@ hdfs namenode -format
 start-all.sh
 ```
 
-![1772792264916](./image/HadoopSetting/1772792264916.png)
+![启动Hadoop集群|728](./image/HadoopSetting/启动Hadoop集群.png)
 > `stop-all.sh` 指令关闭集群。
 
 使用下述命令查看启动状态。
@@ -353,12 +353,12 @@ start-all.sh
 jps
 ```
 
-![jps查询hadoop进程](./image/HadoopSetting/1772792439715.png)
+![jps查询hadoop进程](./image/HadoopSetting/jps查询hadoop进程.png)
 ___
 
 **补充：可重看本文第一章第六节部分**
 若出现如下图问题，可以尝试输入 `ssh localhost` 测试ssh链接情况。
-![启动hadoop问题](./image/HadoopSetting/1772782475097.png)
+![启动hadoop问题|865](./image/HadoopSetting/启动hadoop问题.png)
 
 仍然出现 `Connection refused`，需在拥有 `su` 权限的用户下执行下述命令。
 
@@ -369,11 +369,11 @@ sudo systemctl start ssh
 sudo systemctl enable ssh
 ```
 
-![重装SSH1](./image/HadoopSetting/1772782734667.png)
-![重装SSH2](./image/HadoopSetting/1772782755222.png)
+![重装SSH1|782](./image/HadoopSetting/重装SSH1.png)
+![重装SSH2|784](./image/HadoopSetting/重装SSH2.png)
 
 再次使用 `ssh localhost` 测试ssh链接情况。
-![SSH链接](./image/HadoopSetting/1772782797131.png)
+![SSH链接|823](./image/HadoopSetting/SSH链接.png)
 
 #### （七） 访问 NameNode 和 Resource Manager
 
@@ -383,27 +383,27 @@ sudo systemctl enable ssh
 
     `sudo apt install net-tools`
 
-    ![安装net-tools](./image/HadoopSetting/1772793317412.png)
+    ![安装net-tools|774](./image/HadoopSetting/安装net-tools.png)
 
 - 然后执行 **`ifconfig`** 命令获取本机 `IP`。
     > 注意此处，是 `ifconfig`，而非 `ipconfig`。
 
-    ![查看WSLip信息](./image/HadoopSetting/1772799604880.png)
+    ![查看WSLip信息|659](./image/HadoopSetting/查看WSLip信息.png)
 
     > 此处本机 `IP` 地址是 `26.214.130.121`。
 
 - 要访问 `NameNode`，打开网络浏览器并访问 URL [http://server-ip:9870]
 
     [http://26.214.130.121:9870]
-    ![NameNode界面](./image/HadoopSetting/1772799775967.png)
+    ![NameNode界面|840](./image/HadoopSetting/NameNode界面.png)
 
 - 要访问 `Resource Manage`，打开网络浏览器并访问 URL [http://server-ip:8088]
 
     [http://26.214.130.121:8088]
-    ![ResourceManage界面](./image/HadoopSetting/1772799973015.png)
+    ![ResourceManage界面|832](./image/HadoopSetting/ResourceManage界面.png)
 
   - 若无法访问，可尝试使用localhost进行替代，亦可通过下述方法解决。
-  ![WSL网络配置](./image/HadoopSetting/1772799294602.png)
+  ![WSL网络配置|864](./image/HadoopSetting/WSL网络配置.png)
 
 ### 2..2. 验证 Hadoop 集群
 
@@ -423,10 +423,10 @@ sudo systemctl enable ssh
     ```
 
     输出情况如下：
-    ![创建目录](./image/HadoopSetting/1772800530729.png)
+    ![创建目录|768](./image/HadoopSetting/创建目录.png)
 
     亦可在 `NameNode` 中查看：
-    ![NameNode目录](./image/HadoopSetting/1772800927077.png)
+    ![NameNode目录|775](./image/HadoopSetting/NameNode目录.png)
 
 ## 2.1. 安装 Spark
 
@@ -438,7 +438,7 @@ sudo systemctl enable ssh
 wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
 ```
 
-![pyspark版本](./image/HadoopSetting/pyspark版本.png)
+![pyspark版本|824](./image/HadoopSetting/pyspark版本.png)
 > 等待下载安装包。
 
 ### 2.1.2. 解压 spark 安装包
@@ -453,7 +453,7 @@ wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
     ls
     ```
 
-    ![1772804854689](./image/HadoopSetting/1772804854689.png)
+    ![查看当前路径下的hadoop文件情况|686](./image/HadoopSetting/查看当前路径下的hadoop文件情况.png)
 
 - 解压缩到当前文件夹
 
@@ -461,7 +461,7 @@ wget https://dlcdn.apache.org/spark/spark-3.5.8/spark-3.5.8-bin-hadoop3.tgz
     tar -xvzf spark-3.5.8-bin-hadoop3.tgz
     ```
 
-    ![1772805146661](./image/HadoopSetting/1772805146661.png)
+    ![解压缩hadoop压缩包|538](./image/HadoopSetting/解压缩hadoop压缩包.png)
 
 - 重命名解压后文件（可选）
 
