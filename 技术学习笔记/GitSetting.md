@@ -71,7 +71,7 @@ cat ~/.ssh/id_rsa.pub
 
 依次进入：个人主页 → Settings → SSH and GPG keys → New SSH key
 
-![Github配置SSH密钥](./image/GitSettingGithub配置SSH密钥1.png)
+![Github配置SSH密钥](./image/GitSetting/Github配置SSH密钥1.png)
 
 ![完成添加SSH密钥](./image/GitSetting/Github配置SSH密钥2.png)
 

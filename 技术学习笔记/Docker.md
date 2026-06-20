@@ -16,7 +16,7 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
 ```
 
-![安装依赖](./image/Docker/安装必要支持.png)
+![安装依赖](./image/Docker/安装依赖.png)
 
 ### 1.3. 添加 Docker GPG 密钥
 
