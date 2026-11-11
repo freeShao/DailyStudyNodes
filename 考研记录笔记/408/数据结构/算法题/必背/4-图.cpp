@@ -1,0 +1,168 @@
+// 图
+// 邻接矩阵
+#define MaxVertexNum 100
+typedef char VertexType;
+typedef int EdgeType;
+
+typedef struct {
+    VertexType vexs[MaxVertexNum];
+    EdgeType arcs[MaxVertexNum][MaxVertexNum];
+    int vexnum, arcnum;
+} MGraph;
+
+// 一般使用方法：
+void func(MGraph G) { // G 代表图
+    G.vexnum; // 顶点
+    G.arcs[u][v]; // 边
+}
+
+
+// 1. 单个结点相关 u->v
+// 1.1. 顶点v的入度
+int GetInDegree_M(MGraph G, int v) {
+    int degree = 0;
+    for (int u=0; u<G.vexnum; u++) {
+        if (G.arcs[u][v] == 1) {
+            degree++;
+        }
+    }
+    return degree;
+}
+
+// 1.2. 顶点u的出度
+int GetOutDegree_M(MGraph G, int u) {
+    int degree = 0;
+    for (int v=0; v<G.vexnum; v++) {
+        if (G.arcs[u][v] == 1) {
+            degree++;
+        }
+    }
+    return degree;
+}
+
+// 2. 所有结点相关
+// 2.1. 所有顶点的入度
+void CalcInDegree_M(MGraph G, int inDegree[]) {
+    for (int i=0; i<G.vexnum; i++) { // 初始化入度数组记录
+        inDegree[i]=0;
+    }
+
+    // 遍历每一列，统计指向v的边数
+    for (int v=0; v<G.vexnum; v++) {
+        for (int u=0; u<G.vexnum; u++) {
+            if (G.arcs[u][v] == 1) {
+                inDegree[v]++;
+            }
+        }
+    }
+}
+
+// 2.2. 所有顶点的出度
+void CalcOutDegree_M(MGraph G, int outDegree[]) {
+    for (int i=0; i<G.vexnum; i++) {
+        outDegree[i]=0; 
+    }
+
+    // 遍历每一行，统计u出去的边数
+    for (int u=0; u<G.vexnum; u++) {
+        for (int v=0; v<G.vexnum; v++) {
+            if (G.arcs[u][v] == 1) {
+                outDegree[u]++;
+            }
+        }
+    }
+}
+
+
+// 3. 图的遍历
+// 3.1. DFS
+void DFS_M(MGraph G, int v, int *visited) {
+    visited[v] = 1; // 标记顶点已被访问
+    printf("%d", G.vexs[v]); // 访问顶点
+    for(int u=0; u<G.vexnum; u++) {
+        // 如果存在边且顶点u未被访问过
+        if (G.arcs[u][v]==1 && visited[u]==0) {
+            DFS_M(G, u, visited); // 递归调用时继续传递visited指针
+        }
+    }
+}
+
+void DFSTraverse_M(MGraph G) {
+    int *visited = (int*) malloc (G.vexnum * sizeof(int));
+    // 初始化标记数组
+    for (int i=0; i<G.vexnum; i++) {
+        visited[i]=0;
+    }
+    for (int i=0; i<G.vexnum; i++) {
+        if (!visited[i]) {
+            DFS_M(G, i, visited);
+        }
+    }
+    free(visited); // 释放标记数组空间
+}
+
+// 3.2. BFS
+void BFS(MGraph G, int v, int * visited) {
+    queue<int> q;
+    visited[v]=1; // 标记起始顶点
+    printf("%d", G.vexs[v]); // 访问顶点
+    q.push(v); // 入队
+    while(!q.empty()) {
+        int u=q.front(); // 取队首
+        q.pop(); // 出队
+        for (int i=0; i<G.vexnum; i++) {
+            // 如果存在边且顶点i未访问过
+            if (G.arcs[u][i]==1 && !visited[i]) { // visited==0
+                visited[i]=1; // 在入队时立刻标记
+                printf("%d", G.vexs[i]); // 访问邻接顶点
+                q.push(i); // 邻接顶点入队
+            }
+        }
+    }
+}
+
+void BFSTraverse(MGraph G) {
+    int *visited=(int *) malloc (G.vexnum * sizeof(int));
+    for (int i=0; i<G.vexnum; i++) {
+        if (!visited[i]) {
+            BFS(G, i, visited);
+        }
+    }
+    free(visited);
+}
+
+
+// 4. 拓扑排序
+int TopologicalSort_M(MGraph G) {
+    int *inDegree = (int *) malloc(G.vexnum * sizeof(int));
+    CalcInDegree_M(G, inDegree); // 统计所有顶点的入度
+    queue<int> q;
+    for (int i=0; i<G.vexnum; i++) {
+        if (inDegree[i]==0) {
+            q.push(i); // 初始入度为零的顶点入度
+        }
+    }
+    int count=0; // 用于记录成功排序的顶点数
+    while(!q.empty()) {
+        int u = q.front();
+        q.pop();
+        printf("%d", G.vexs[u]); // 输出当前顶点
+        count++;
+        for (int v=0; v<G.vexnum; v++) {
+            // 消除该顶点对邻接点的影响（入度减1）
+            // 如果邻接点入度因此变为0，则将其入队
+            if (G.arcs[u][v]==1 && --inDegree==0) {
+                q.push[v];
+            }
+        }
+    }
+    // 对比输出的顶点数与总顶点数，判断图中是否有环
+    if (count < G.vexnum) {
+        printf("图中存在有向环，无法拓扑排序");
+        free(inDegree);
+        return 0;
+    }
+    free(inDegree);
+    return 1;
+}
+

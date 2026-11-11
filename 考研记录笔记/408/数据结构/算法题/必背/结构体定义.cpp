@@ -6,6 +6,14 @@ typedef struct {
     int data[maxsize];
     int length;
 } SqList;
+int *arr = (int*)malloc(10*sizeof(int)); // 申请整型空间（可更换为char）
+// 一般用于链表需要额外数组空间辅助
+// 一般使用方法：
+void func(int a[], int n){
+    // a[] 表示传入数组，n可以代指a[]的长度/其他相关变量(循环次数等)
+    return; // [*]void 下不可返回任何值
+}
+
 
 // 2. 单链表（带头结点）[* 可能考手写结构体]
 typedef int ElemType;
@@ -13,6 +21,13 @@ typedef struct LNode {
     ElemType data;
     struct LNode *next;
 } LNode, *LinkList;
+// 单个结点
+LNode *p = HEAD->next; // HEAD为函数输入链表的头结点，如下
+// 一般使用方法：
+void func(LinkList L){ // L 代指头结点
+    LNode *p = L->next;
+    return;
+}
 
 // 3. 栈与队列
 // 3.1. 顺序栈
@@ -40,11 +55,11 @@ typedef struct BiTNode {
 // 5.1. 邻接矩阵
 #define MaxVertexNum 100
 typedef char VertexType;
-typedef int EdgeType;
+typedef int ArcsType;
 
 typedef struct {
-    VertexType vex[MaxVertexNum];
-    EdgeType edge[MaxVertexNum][MaxVertexNum];
+    VertexType vexs[MaxVertexNum];
+    ArcsType arcs[MaxVertexNum][MaxVertexNum];
     int vexnum, arcnum;
 } MGraph;
 

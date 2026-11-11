@@ -5,6 +5,12 @@ typedef struct {
     int length;
 } SqList;
 
+// 一般使用方法：
+void func(int a[], int n){ // 等价于 [SqList &L]
+    // a[] 表示传入数组，n可以代指a[]的长度/其他相关变量(循环次数等)
+    return;
+}
+
 
 // 1. 原地逆置【O(n), O(1)】
 void Reverse (SqList &L) {
@@ -14,7 +20,7 @@ void Reverse (SqList &L) {
         L.data[j] = t;
     }
 }
-
+// ==========================
 
 // 2. 删除所有值为x的元素【O(n), O(1)】
 void DelX(SqList &L, ElemType x) {
@@ -26,7 +32,7 @@ void DelX(SqList &L, ElemType x) {
     }
     L.length = k;
 }
-
+// ==========================
 
 // 3. 有序表合并（归并）【O(m+n), O(1)】
 void Merge(SqList A, SqList B, SqList &C) { // C 用来存放合并后的顺序表
@@ -42,3 +48,4 @@ void Merge(SqList A, SqList B, SqList &C) { // C 用来存放合并后的顺序�
     while (j < B.length) C.data[k++] = B.data[j++];
     C.length = k;
 }
+// ==========================

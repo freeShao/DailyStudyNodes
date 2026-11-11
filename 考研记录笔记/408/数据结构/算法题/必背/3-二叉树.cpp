@@ -1,0 +1,140 @@
+// 二叉树
+typedef int ElemType;
+typedef struct BiTNode {
+    ElemType data;
+    struct BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+
+// 一般使用方法：
+void func(BiTree T){
+    if (T==NULL) return; // 必定先判空
+    return;
+}
+
+
+// 主要考察三种递归遍历；四种必要性质；其他常考
+
+// 1. 三种递归遍历[前、中、后]
+// 1.1. 前序遍历(递归)[根->左->右]
+void preOrder(BiTree T) {
+    if (T==NULL) return;
+    printf("%d", T->data);
+    preOrder(T->lchild);
+    preOrder(T->rchild);
+}
+// ==========================
+
+// 1.2. 中序遍历(递归)[左->根->右]
+void inOrder(BiTree T) {
+    if (T==NULL) return;
+    inOrder(T->lchild);
+    printf("%d", T->data);
+    inOrder(T->rchild);
+}
+// ==========================
+
+// 1.3. 后序遍历(递归)[左->右->根]
+void postOrder(BiTree T) {
+    if (T==NULL) return;
+    postOrder(T->lchild);
+    postOrder(T->rchild);
+    printf("%d", T->data);
+}
+// ==========================
+
+
+// 2. 四种必要性质[树高、节点总数、叶子节点数、WPL]
+// 2.1. 计算二叉树高度/深度
+int treeHeight(BiTree T) {
+    if (T == NULL) return 0;
+    int leftHeight = treeHeight(T->lchild); // 计算左子树的高度
+    int rightHeight = treeHeight(T->rchild); // 计算右子树的高度
+
+    if (leftHeight > rightHeight) { // 以当前节点为根的树高度为max(左子树高度, 右子树高度) + 1
+        return leftHeight + 1;
+    } else {
+        return rightHeight + 1;
+    }
+}
+//======================
+
+// 2.2. 计算二叉树的节点总数
+int countNodes(BiTree T) {
+    if (T == NULL) return 0;
+    int l = countNodes(T->lchild);
+    int r=  countNodes(T->rchild);
+    return l + r + 1; // 额外加上根结点
+}
+// ==========================
+
+// 2.3. 计算二叉树的叶子节点总数
+int countLeafNodes(BiTree T) {
+    if (T == NULL) return 0;
+    if (T->lchild == NULL && T->rchild == NULL) { // 无左右孩子为叶子节点
+        return 1;
+    } else {
+        return countLeafNodes(T->lchild) + countLeafNodes(T->rchild);
+    }
+}
+// ==========================
+
+// 2.4. 计算WPL(带权路径长度)
+int calculateWPL(BiTNode *T, int depth) {
+    if (T == NULL) return 0;
+
+    if (T->lchild == NULL && T->rchild == NULL) {
+        return T->data * depth; // 每个叶子节点：路径长度*权值
+    } else {
+        return calculateWPL(T->lchild, depth+1) + calculateWPL(T->rchild, depth+1);
+        // 非叶子节点向下递归，寻找叶子节点
+    }
+}
+
+int wpl(BiTree root) {
+    return calculateWPL(root, 0);
+}
+// ==========================
+
+
+// 3. 其他常考
+// 3.1. 层序遍历(BFS基础) - 队列(queue)辅助
+void levelOrder(BiTree T) {
+    if (T==NULL) return;
+    queue<BiTNode*> q; // 使用标准库队列
+    q.push(T); // 根结点入队
+
+    while (!q.empty()) {
+        BiTNode *node = q.front(); // 取出队首节点
+        q.pop(); // 出队
+        cout << node ->data << " "; // 访问节点
+        if (node->lchild != NULL) { // 左子结点入队
+            q.push(node->lchild);
+        } else {
+            q.push(node->rchild); // 右子结点入队
+        }
+    }
+}
+// ==========================
+
+// 3.2. 二叉搜索树(BFS) [左小右大]
+int max0 = 0;
+bool isBST(BiTree bt, int k) {
+    int n = bt.ElemNum;
+    if (k < n && bt.BiTNode[k] != -1) { // 当前结点存在
+        // 递归检查左子树
+        if (!isBST(bt, k*2 + 1)) {
+            return false;
+        }
+        // 检查当前结点是否满足递增关系
+        if (bt.BiTNode[k] <= max0) {
+            return false;
+        }
+        max0 = bt.BiTNode[k];
+        // 递归检查右子树
+        if (!isBST(bt, k*2 + 2)) {
+            return false;
+        }
+    }
+    return true;
+}
+// ==========================
